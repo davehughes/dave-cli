@@ -12,6 +12,3 @@ dependencies = [
 
 [project.scripts]
 dave = "dave.cli:main"
-
-[tool.setuptools.packages.find]
-where = ["src"]

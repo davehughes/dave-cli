@@ -1,14 +1,14 @@
 import tabulate
 
 MOVEMENT_DIRECTION_OFFSETS = {
-    'up':    { 'row_offset': -1, 'column_offset':  0 },
-    'down':  { 'row_offset':  1, 'column_offset':  0 },
-    'left':  { 'row_offset':  0, 'column_offset': -1 },
-    'right': { 'row_offset':  0, 'column_offset':  1 },
+    "up": {"row_offset": -1, "column_offset": 0},
+    "down": {"row_offset": 1, "column_offset": 0},
+    "left": {"row_offset": 0, "column_offset": -1},
+    "right": {"row_offset": 0, "column_offset": 1},
 }
 MOVEMENT_DIRECTIONS = MOVEMENT_DIRECTION_OFFSETS.keys()
 
-INVERT_DIRECTIONS = {'horizontal', 'vertical'}
+INVERT_DIRECTIONS = {"horizontal", "vertical"}
 
 
 class GridController(object):
@@ -71,15 +71,17 @@ class GridController(object):
         )
         space_index = self.index_for_coords(relative_coords)
 
-        matching_spaces = [s for s in self.client.spaces if s.data['index'] == space_index + 1]
+        matching_spaces = [
+            s for s in self.client.spaces if s.data["index"] == space_index + 1
+        ]
         return matching_spaces[0] if matching_spaces else None
 
-    def print_grid(self, tablefmt='fancy_grid'):
-        highlight = lambda s: f'*{s}*'
-        normal = lambda s: f'-{s}- '
+    def print_grid(self, tablefmt="fancy_grid"):
+        highlight = lambda s: f"*{s}*"
+        normal = lambda s: f"-{s}- "
         data = [
-            [normal('grid1.1'), normal('grid1.2')],
-            [highlight('grid2.1'), normal('grid2.2')],
+            [normal("grid1.1"), normal("grid1.2")],
+            [highlight("grid2.1"), normal("grid2.2")],
         ]
         table = tabulate.tabulate(data, tablefmt=tablefmt)
         print(table)
